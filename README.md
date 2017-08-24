@@ -1,2 +1,2 @@
-# laboratorio1_Estructuras_2
+# Laboratorio 1
 Repaso de estructuras de datos basicas
