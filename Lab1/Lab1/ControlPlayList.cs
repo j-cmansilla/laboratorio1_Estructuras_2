@@ -65,6 +65,20 @@ namespace Lab1
             }
         }
 
+        public static Cancion buscarUrlCancion(String criterioDeBusqueda)
+        {
+            String[] datos = File.ReadAllLines(nombrePorDefectoArchivo);
+            for (int i = 0; i < datos.Length; i++)
+            {
+                String[] words = datos[i].Split(',');
+                if (criterioDeBusqueda == words[0])
+                {
+                    return new Cancion(words[0], words[1], words[2], words[3], words[4]);
+                }
+            }
+            return new Cancion();
+        }
+
         public static void AgregarCancion(Cancion cancion)
         {
             if (!File.Exists(nombrePorDefectoArchivo))

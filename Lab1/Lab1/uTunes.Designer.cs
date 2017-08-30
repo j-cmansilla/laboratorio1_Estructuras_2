@@ -29,16 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uTunes));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuPrincipal = new System.Windows.Forms.MenuStrip();
             this.userMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mostrarCanciones = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.nowPlaying = new System.Windows.Forms.ToolStripStatusLabel();
@@ -46,30 +44,31 @@
             this.txtCancion = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dtCanciones = new System.Windows.Forms.DataGridView();
+            this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.btnAgregarPlaylist = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.rdbDes = new System.Windows.Forms.RadioButton();
+            this.rdbAs = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbOrdenar = new System.Windows.Forms.ComboBox();
+            this.lblNombrePlaylist = new System.Windows.Forms.Label();
+            this.dtPlaylist = new System.Windows.Forms.DataGridView();
+            this.mediaP = new AxWMPLib.AxWindowsMediaPlayer();
+            this.openDialog = new System.Windows.Forms.OpenFileDialog();
             this.Titulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Artista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Genero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Duracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.url = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            this.btnAgregarPlaylist = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lblNombrePlaylist = new System.Windows.Forms.Label();
-            this.dtPlaylist = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mediaP = new AxWMPLib.AxWindowsMediaPlayer();
-            this.openDialog = new System.Windows.Forms.OpenFileDialog();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.cmbOrdenar = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.rdbAs = new System.Windows.Forms.RadioButton();
-            this.rdbDes = new System.Windows.Forms.RadioButton();
             this.menuPrincipal.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtCanciones)).BeginInit();
@@ -79,13 +78,13 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtPlaylist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuPrincipal
             // 
             this.menuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userMenu,
-            this.cancionesToolStripMenuItem});
+            this.userMenu});
             this.menuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.menuPrincipal.Name = "menuPrincipal";
             this.menuPrincipal.Size = new System.Drawing.Size(960, 24);
@@ -103,24 +102,9 @@
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cerrarSesiónToolStripMenuItem.Text = "Cerrar sesión";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
-            // 
-            // cancionesToolStripMenuItem
-            // 
-            this.cancionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mostrarCanciones});
-            this.cancionesToolStripMenuItem.Name = "cancionesToolStripMenuItem";
-            this.cancionesToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.cancionesToolStripMenuItem.Text = "Canciones";
-            // 
-            // mostrarCanciones
-            // 
-            this.mostrarCanciones.Name = "mostrarCanciones";
-            this.mostrarCanciones.Size = new System.Drawing.Size(152, 22);
-            this.mostrarCanciones.Text = "Mostrar Todas";
-            this.mostrarCanciones.Click += new System.EventHandler(this.mostrarCanciones_Click);
             // 
             // contextMenuStrip1
             // 
@@ -185,14 +169,14 @@
             this.dtCanciones.AllowUserToResizeRows = false;
             this.dtCanciones.BackgroundColor = System.Drawing.Color.Lavender;
             this.dtCanciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Eras Medium ITC", 10F);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtCanciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Eras Medium ITC", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtCanciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dtCanciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtCanciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Titulo,
@@ -201,65 +185,25 @@
             this.Duracion,
             this.url});
             this.dtCanciones.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Eras Medium ITC", 10F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtCanciones.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Eras Medium ITC", 10F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtCanciones.DefaultCellStyle = dataGridViewCellStyle6;
             this.dtCanciones.GridColor = System.Drawing.Color.MediumTurquoise;
             this.dtCanciones.Location = new System.Drawing.Point(12, 111);
             this.dtCanciones.Name = "dtCanciones";
             this.dtCanciones.ReadOnly = true;
+            this.dtCanciones.RowHeadersVisible = false;
             this.dtCanciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dtCanciones.Size = new System.Drawing.Size(910, 325);
             this.dtCanciones.TabIndex = 9;
+            this.dtCanciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCanciones_CellContentClick);
+            this.dtCanciones.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtCanciones_CellContentDoubleClick);
             this.dtCanciones.SelectionChanged += new System.EventHandler(this.dtCanciones_SelectionChanged);
-            // 
-            // Titulo
-            // 
-            this.Titulo.FillWeight = 1F;
-            this.Titulo.Frozen = true;
-            this.Titulo.HeaderText = "Titulo";
-            this.Titulo.Name = "Titulo";
-            this.Titulo.ReadOnly = true;
-            this.Titulo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Titulo.Width = 350;
-            // 
-            // Artista
-            // 
-            this.Artista.FillWeight = 110F;
-            this.Artista.Frozen = true;
-            this.Artista.HeaderText = "Artista";
-            this.Artista.Name = "Artista";
-            this.Artista.ReadOnly = true;
-            this.Artista.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Artista.Width = 319;
-            // 
-            // Genero
-            // 
-            this.Genero.Frozen = true;
-            this.Genero.HeaderText = "Genero";
-            this.Genero.Name = "Genero";
-            this.Genero.ReadOnly = true;
-            this.Genero.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Genero.Width = 105;
-            // 
-            // Duracion
-            // 
-            this.Duracion.HeaderText = "Duracion";
-            this.Duracion.Name = "Duracion";
-            this.Duracion.ReadOnly = true;
-            this.Duracion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // url
-            // 
-            this.url.HeaderText = "url";
-            this.url.Name = "url";
-            this.url.ReadOnly = true;
-            this.url.Visible = false;
             // 
             // mediaPlayer
             // 
@@ -298,6 +242,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Silver;
             this.tabPage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage1.BackgroundImage")));
+            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.btnAgregar);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.btnAgregarPlaylist);
@@ -310,6 +255,17 @@
             this.tabPage1.Size = new System.Drawing.Size(928, 439);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Canciones";
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Font = new System.Drawing.Font("Eras Medium ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(734, 45);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(188, 27);
+            this.btnAgregar.TabIndex = 14;
+            this.btnAgregar.Text = "Subir una cancion";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // tabPage2
             // 
@@ -327,6 +283,57 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Playlist";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // rdbDes
+            // 
+            this.rdbDes.AutoSize = true;
+            this.rdbDes.Font = new System.Drawing.Font("Eras Medium ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbDes.Location = new System.Drawing.Point(271, 347);
+            this.rdbDes.Name = "rdbDes";
+            this.rdbDes.Size = new System.Drawing.Size(157, 22);
+            this.rdbDes.TabIndex = 21;
+            this.rdbDes.TabStop = true;
+            this.rdbDes.Text = "Descendentemente";
+            this.rdbDes.UseVisualStyleBackColor = true;
+            // 
+            // rdbAs
+            // 
+            this.rdbAs.AutoSize = true;
+            this.rdbAs.Font = new System.Drawing.Font("Eras Medium ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbAs.Location = new System.Drawing.Point(434, 345);
+            this.rdbAs.Name = "rdbAs";
+            this.rdbAs.Size = new System.Drawing.Size(148, 22);
+            this.rdbAs.TabIndex = 20;
+            this.rdbAs.TabStop = true;
+            this.rdbAs.Text = "Ascendentemente";
+            this.rdbAs.UseVisualStyleBackColor = true;
+            this.rdbAs.CheckedChanged += new System.EventHandler(this.rdbAs_CheckedChanged);
+            this.rdbAs.EnabledChanged += new System.EventHandler(this.rdbAs_EnabledChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Eras Medium ITC", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Snow;
+            this.label1.Location = new System.Drawing.Point(24, 345);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 22);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Ordenar Por";
+            // 
+            // cmbOrdenar
+            // 
+            this.cmbOrdenar.Font = new System.Drawing.Font("Eras Medium ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbOrdenar.FormattingEnabled = true;
+            this.cmbOrdenar.Items.AddRange(new object[] {
+            "Titulo",
+            "Duración"});
+            this.cmbOrdenar.Location = new System.Drawing.Point(144, 346);
+            this.cmbOrdenar.Name = "cmbOrdenar";
+            this.cmbOrdenar.Size = new System.Drawing.Size(121, 26);
+            this.cmbOrdenar.TabIndex = 18;
+            this.cmbOrdenar.SelectedIndexChanged += new System.EventHandler(this.cmbOrdenar_SelectedIndexChanged);
             // 
             // lblNombrePlaylist
             // 
@@ -348,14 +355,14 @@
             this.dtPlaylist.AllowUserToResizeRows = false;
             this.dtPlaylist.BackgroundColor = System.Drawing.Color.Lavender;
             this.dtPlaylist.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Eras Medium ITC", 10F);
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtPlaylist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Eras Medium ITC", 10F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtPlaylist.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dtPlaylist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtPlaylist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -364,65 +371,24 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
             this.dtPlaylist.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Eras Medium ITC", 10F);
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtPlaylist.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Eras Medium ITC", 10F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtPlaylist.DefaultCellStyle = dataGridViewCellStyle8;
             this.dtPlaylist.GridColor = System.Drawing.Color.MediumTurquoise;
             this.dtPlaylist.Location = new System.Drawing.Point(12, 67);
             this.dtPlaylist.Name = "dtPlaylist";
             this.dtPlaylist.ReadOnly = true;
+            this.dtPlaylist.RowHeadersVisible = false;
             this.dtPlaylist.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dtPlaylist.Size = new System.Drawing.Size(910, 266);
             this.dtPlaylist.TabIndex = 10;
+            this.dtPlaylist.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtPlaylist_CellDoubleClick);
             this.dtPlaylist.SelectionChanged += new System.EventHandler(this.dtPlaylist_SelectionChanged);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.FillWeight = 1F;
-            this.dataGridViewTextBoxColumn1.Frozen = true;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Titulo";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.Width = 350;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.FillWeight = 110F;
-            this.dataGridViewTextBoxColumn2.Frozen = true;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Artista";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.Width = 319;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.Frozen = true;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Genero";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.Width = 105;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Duracion";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "url";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Visible = false;
             // 
             // mediaP
             // 
@@ -437,67 +403,108 @@
             // 
             this.openDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openDialog_FileOk);
             // 
-            // btnAgregar
+            // Titulo
             // 
-            this.btnAgregar.Font = new System.Drawing.Font("Eras Medium ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(734, 45);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(188, 27);
-            this.btnAgregar.TabIndex = 14;
-            this.btnAgregar.Text = "Cargar una cancion";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.Titulo.FillWeight = 1F;
+            this.Titulo.Frozen = true;
+            this.Titulo.HeaderText = "Titulo";
+            this.Titulo.Name = "Titulo";
+            this.Titulo.ReadOnly = true;
+            this.Titulo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Titulo.Width = 383;
             // 
-            // cmbOrdenar
+            // Artista
             // 
-            this.cmbOrdenar.Font = new System.Drawing.Font("Eras Medium ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbOrdenar.FormattingEnabled = true;
-            this.cmbOrdenar.Items.AddRange(new object[] {
-            "Titulo",
-            "Duración"});
-            this.cmbOrdenar.Location = new System.Drawing.Point(144, 346);
-            this.cmbOrdenar.Name = "cmbOrdenar";
-            this.cmbOrdenar.Size = new System.Drawing.Size(121, 26);
-            this.cmbOrdenar.TabIndex = 18;
-            this.cmbOrdenar.SelectedIndexChanged += new System.EventHandler(this.cmbOrdenar_SelectedIndexChanged);
+            this.Artista.FillWeight = 110F;
+            this.Artista.Frozen = true;
+            this.Artista.HeaderText = "Artista";
+            this.Artista.Name = "Artista";
+            this.Artista.ReadOnly = true;
+            this.Artista.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Artista.Width = 319;
             // 
-            // label1
+            // Genero
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Eras Medium ITC", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Snow;
-            this.label1.Location = new System.Drawing.Point(24, 345);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 22);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Ordenar Por";
+            this.Genero.Frozen = true;
+            this.Genero.HeaderText = "Genero";
+            this.Genero.Name = "Genero";
+            this.Genero.ReadOnly = true;
+            this.Genero.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Genero.Width = 105;
             // 
-            // rdbAs
+            // Duracion
             // 
-            this.rdbAs.AutoSize = true;
-            this.rdbAs.Font = new System.Drawing.Font("Eras Medium ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbAs.Location = new System.Drawing.Point(434, 345);
-            this.rdbAs.Name = "rdbAs";
-            this.rdbAs.Size = new System.Drawing.Size(148, 22);
-            this.rdbAs.TabIndex = 20;
-            this.rdbAs.TabStop = true;
-            this.rdbAs.Text = "Ascendentemente";
-            this.rdbAs.UseVisualStyleBackColor = true;
-            this.rdbAs.CheckedChanged += new System.EventHandler(this.rdbAs_CheckedChanged);
-            this.rdbAs.EnabledChanged += new System.EventHandler(this.rdbAs_EnabledChanged);
+            this.Duracion.HeaderText = "Duracion";
+            this.Duracion.Name = "Duracion";
+            this.Duracion.ReadOnly = true;
+            this.Duracion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // rdbDes
+            // url
             // 
-            this.rdbDes.AutoSize = true;
-            this.rdbDes.Font = new System.Drawing.Font("Eras Medium ITC", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbDes.Location = new System.Drawing.Point(271, 347);
-            this.rdbDes.Name = "rdbDes";
-            this.rdbDes.Size = new System.Drawing.Size(157, 22);
-            this.rdbDes.TabIndex = 21;
-            this.rdbDes.TabStop = true;
-            this.rdbDes.Text = "Descendentemente";
-            this.rdbDes.UseVisualStyleBackColor = true;
+            this.url.HeaderText = "url";
+            this.url.Name = "url";
+            this.url.ReadOnly = true;
+            this.url.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(463, 37);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 34);
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 1F;
+            this.dataGridViewTextBoxColumn1.Frozen = true;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Titulo";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 383;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 110F;
+            this.dataGridViewTextBoxColumn2.Frozen = true;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Artista";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 319;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.Frozen = true;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Genero";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn3.Width = 105;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Duracion";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "url";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn5.Visible = false;
             // 
             // uTunes
             // 
@@ -529,6 +536,7 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtPlaylist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,30 +555,29 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridView dtCanciones;
         private AxWMPLib.AxWindowsMediaPlayer mediaPlayer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Titulo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Artista;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Genero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Duracion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn url;
         private System.Windows.Forms.Button btnAgregarPlaylist;
-        private System.Windows.Forms.ToolStripMenuItem cancionesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mostrarCanciones;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private AxWMPLib.AxWindowsMediaPlayer mediaP;
         private System.Windows.Forms.OpenFileDialog openDialog;
         private System.Windows.Forms.DataGridView dtPlaylist;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.Label lblNombrePlaylist;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.RadioButton rdbDes;
         private System.Windows.Forms.RadioButton rdbAs;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbOrdenar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Titulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Artista;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Genero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Duracion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn url;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }

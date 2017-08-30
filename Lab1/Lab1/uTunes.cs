@@ -98,6 +98,7 @@ namespace Lab1
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            pictureBox1.Visible = true;
             vaciarDataGrid();
             List<String> lista = ControlCanciones.buscarCanciones(txtCancion.Text);
             for (int i = 0; i < lista.Count; i++)
@@ -118,17 +119,7 @@ namespace Lab1
 
         private void dtCanciones_SelectionChanged(object sender, EventArgs e)
         {
-            if (dtCanciones.SelectedCells.Count == 5)
-            {
-                string localizacion = (string)dtCanciones.SelectedCells[4].Value;
-                mediaP.URL = localizacion;
-                nowPlaying.Text = "Ahora suena: "+(string)dtCanciones.SelectedCells[0].Value+"-"+ (string)dtCanciones.SelectedCells[1].Value;
-                btnAgregarPlaylist.Enabled = true;
-            }
-            else
-            {
-                btnAgregarPlaylist.Enabled = false;
-            }
+            
         }
 
         private void playlistMenu_Click(object sender, EventArgs e)
@@ -138,8 +129,7 @@ namespace Lab1
 
         private void mostrarCanciones_Click(object sender, EventArgs e)
         {
-            vaciarDataGrid();
-            LlenarCanciones();
+            
         }
 
         private void mediaPlayer_EndOfStream(object sender, AxWMPLib._WMPOCXEvents_EndOfStreamEvent e)
@@ -163,8 +153,16 @@ namespace Lab1
 
         private void btnAgregarPlaylist_Click(object sender, EventArgs e)
         {
-                ControlPlayList.AgregarCancion(new Cancion((string)dtCanciones.SelectedCells[0].Value, (string)dtCanciones.SelectedCells[1].Value, (string)dtCanciones.SelectedCells[2].Value, (string)dtCanciones.SelectedCells[3].Value, (string)dtCanciones.SelectedCells[4].Value));
-                MessageBox.Show("Cancion: "+ (string)dtCanciones.SelectedCells[0].Value + " agregada a la playlist!");
+            Cancion cancion = ControlCanciones.buscarUrlCancion(dtCanciones.SelectedCells[0].Value.ToString());
+            if (cancion == null)
+            {
+                MessageBox.Show("Debe seleccionar la casilla de titulo para esta operacion!");
+            }
+            else
+            {
+                ControlPlayList.AgregarCancion(cancion);
+                MessageBox.Show("Cancion: " + (string)dtCanciones.SelectedCells[0].Value + " agregada a la playlist!");
+            }
         }
 
         private void btnCrearPlaylist_Click(object sender, EventArgs e)
@@ -184,12 +182,7 @@ namespace Lab1
 
         private void dtPlaylist_SelectionChanged(object sender, EventArgs e)
         {
-            if (dtPlaylist.SelectedCells.Count == 5)
-            {
-                string localizacion = (string)dtPlaylist.SelectedCells[4].Value;
-                mediaP.URL = localizacion;
-                nowPlaying.Text = "Ahora suena: " + (string)dtPlaylist.SelectedCells[0].Value + "-" + (string)dtPlaylist.SelectedCells[1].Value;
-            }
+            
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -219,7 +212,16 @@ namespace Lab1
                 }
                 cancion.Titulo = nuevoNombre;
                 cancion.Localizacion = openDialog.FileName;
-                cancion.Duracion = mp3.Properties.Duration.Minutes.ToString() + ":" + mp3.Properties.Duration.Seconds.ToString();
+                string segundos;
+                if (mp3.Properties.Duration.Seconds<10)
+                {
+                    segundos = "0" + mp3.Properties.Duration.Seconds.ToString();
+                }
+                else
+                {
+                    segundos = mp3.Properties.Duration.Seconds.ToString();
+                }
+                cancion.Duracion = mp3.Properties.Duration.Minutes.ToString() + ":" + segundos;
                 if (mp3.Tag.FirstPerformer == null)
                 {
                     cancion.Artista = "Desconocido";
@@ -239,6 +241,7 @@ namespace Lab1
                 ControlCanciones.AgregarCancion(cancion);
                 ControlCanciones.listaCanciones.Add(cancion);
                 MessageBox.Show("Cancion: " + cancion.Titulo + " correctamente agregado!");
+                ControlCanciones.FillSongs(nombrePorDefectoArchivo);
                 LlenarCanciones();
             }
             openDialog.FileName = "";
@@ -296,6 +299,45 @@ namespace Lab1
         private void cmbOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
             Ordenar();
+        }
+
+        private void dtCanciones_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Cancion cancion = ControlCanciones.buscarUrlCancion(dtCanciones.SelectedCells[0].Value.ToString());
+            if (cancion != null)
+            {
+                mediaP.URL = cancion.Localizacion;
+                nowPlaying.Text = "Ahora suena: " + cancion.Titulo + "-" + cancion.Artista;
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar la casilla de titulo para esta operacion!");
+            }
+        }
+
+        private void dtCanciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnAgregarPlaylist.Enabled = true;
+        }
+
+        private void dtPlaylist_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Cancion cancion = ControlPlayList.buscarUrlCancion(dtPlaylist.SelectedCells[0].Value.ToString());
+            if (cancion == null)
+            {
+                MessageBox.Show("Debe seleccionar la casilla de titulo para esta operacion!");
+            }
+            else
+            {
+                mediaP.URL = cancion.Localizacion;
+                nowPlaying.Text = "Ahora suena: " + cancion.Titulo + "-" + cancion.Artista;
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            LlenarCanciones();
+            pictureBox1.Visible = false;
         }
     }
 }
