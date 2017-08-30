@@ -13,17 +13,21 @@ namespace Lab1
     public partial class uTunes : Form
     {
         private const string nombrePorDefectoRuta = @"C:/uTunes/Canciones/";
+        private const string nombrePorDefectoRutaP = @"C:/uTunes/Playlist/";
+        private const string nombrePorDefectoArchivoP = "playlist.csv";
         private const string nombrePorDefectoArchivo = "canciones.csv";
         public static Usuario usuarioLogueado;
         public uTunes()
         {
             InitializeComponent();
             userMenu.Text = usuarioLogueado.Nombre;
+            ControlCanciones.listaCanciones = new List<Cancion>();
             ControlCanciones.initialize();
-            ControlCanciones.FillSongs(nombrePorDefectoArchivo);
+            ControlPlayList.initialize();
+            ControlCanciones.FillSongs(nombrePorDefectoRuta + nombrePorDefectoArchivo);
             LlenarCanciones();
         }
-        
+
         private void LlenarPlaylist()
         {
             vaciarDataGridPlaylist();
@@ -37,10 +41,17 @@ namespace Lab1
         private void LlenarCanciones()
         {
             vaciarDataGrid();
-            for (int i = 0; i < ControlCanciones.listaCanciones.Count; i++)
+            if (ControlCanciones.listaCanciones.Count == 0)
             {
-                dtCanciones.Rows.Add();
-                dtCanciones.Rows[i].SetValues(ControlCanciones.listaCanciones.ElementAt(i).Titulo, ControlCanciones.listaCanciones.ElementAt(i).Artista, ControlCanciones.listaCanciones.ElementAt(i).Genero, ControlCanciones.listaCanciones.ElementAt(i).Duracion, ControlCanciones.listaCanciones.ElementAt(i).Localizacion);
+
+            }
+            else
+            {
+                for (int i = 0; i < ControlCanciones.listaCanciones.Count; i++)
+                {
+                    dtCanciones.Rows.Add();
+                    dtCanciones.Rows[i].SetValues(ControlCanciones.listaCanciones.ElementAt(i).Titulo, ControlCanciones.listaCanciones.ElementAt(i).Artista, ControlCanciones.listaCanciones.ElementAt(i).Genero, ControlCanciones.listaCanciones.ElementAt(i).Duracion, ControlCanciones.listaCanciones.ElementAt(i).Localizacion);
+                }
             }
         }
 
@@ -58,7 +69,7 @@ namespace Lab1
 
         private void playlists_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
@@ -119,7 +130,7 @@ namespace Lab1
 
         private void dtCanciones_SelectionChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void playlistMenu_Click(object sender, EventArgs e)
@@ -129,22 +140,22 @@ namespace Lab1
 
         private void mostrarCanciones_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void mediaPlayer_EndOfStream(object sender, AxWMPLib._WMPOCXEvents_EndOfStreamEvent e)
         {
-            
+
         }
 
         private void seleccionarCancionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void openDialog_FileOk(object sender, CancelEventArgs e)
         {
-            
+
         }
 
         private void txtPlaylist_TextChanged(object sender, EventArgs e)
@@ -167,7 +178,7 @@ namespace Lab1
 
         private void btnCrearPlaylist_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -175,14 +186,14 @@ namespace Lab1
             if (tabControl1.SelectedIndex == 1)
             {
                 vaciarDataGridPlaylist();
-                ControlPlayList.FillSongs("playlist.csv");
+                ControlPlayList.FillSongs(nombrePorDefectoRutaP+nombrePorDefectoArchivoP);
                 LlenarPlaylist();
             }
         }
 
         private void dtPlaylist_SelectionChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -213,7 +224,7 @@ namespace Lab1
                 cancion.Titulo = nuevoNombre;
                 cancion.Localizacion = openDialog.FileName;
                 string segundos;
-                if (mp3.Properties.Duration.Seconds<10)
+                if (mp3.Properties.Duration.Seconds < 10)
                 {
                     segundos = "0" + mp3.Properties.Duration.Seconds.ToString();
                 }
@@ -241,7 +252,7 @@ namespace Lab1
                 ControlCanciones.AgregarCancion(cancion);
                 ControlCanciones.listaCanciones.Add(cancion);
                 MessageBox.Show("Cancion: " + cancion.Titulo + " correctamente agregado!");
-                ControlCanciones.FillSongs(nombrePorDefectoArchivo);
+                ControlCanciones.FillSongs(nombrePorDefectoRuta + nombrePorDefectoArchivo);
                 LlenarCanciones();
             }
             openDialog.FileName = "";
@@ -249,7 +260,7 @@ namespace Lab1
 
         private void rdbAs_EnabledChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void rdbAs_CheckedChanged(object sender, EventArgs e)

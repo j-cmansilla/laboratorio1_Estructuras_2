@@ -9,9 +9,18 @@ namespace Lab1
 {
     class ControlPlayList
     {
+        private const string nombrePorDefectoRuta = @"C:/uTunes/Playlist/";
         private const string nombrePorDefectoArchivo = "playlist.csv";
         public static bool DictionaryIsLoaded = false;
-       
+
+        public static void initialize()
+        {
+            if (!Directory.Exists(nombrePorDefectoRuta + nombrePorDefectoArchivo))
+            {
+                Directory.CreateDirectory(nombrePorDefectoRuta);
+            }
+        }
+
         public static List<Cancion> listaCanciones = new List<Cancion>();
 
         public static void FillSongs(string FilePath)
@@ -20,8 +29,11 @@ namespace Lab1
             listaCanciones = new List<Cancion>();
             foreach (string Line in Lines)
             {
-                string[] SeparatedValues = Line.Split(',');
-                listaCanciones.Add(new Cancion(SeparatedValues[0], SeparatedValues[1], SeparatedValues[2], SeparatedValues[3], SeparatedValues[4])); 
+                if (Line != "")
+                {
+                    string[] SeparatedValues = Line.Split(',');
+                    listaCanciones.Add(new Cancion(SeparatedValues[0], SeparatedValues[1], SeparatedValues[2], SeparatedValues[3], SeparatedValues[4]));
+                } 
             }
             if (!Directory.Exists(nombrePorDefectoArchivo))
             {
@@ -33,7 +45,7 @@ namespace Lab1
         public static String[] agregarCanciones(Cancion cancion)
         {
             String[] datos = new String[1];
-            datos[0] = cancion.Titulo + "," + cancion.Artista + "," + cancion.Genero + "," + cancion.Duracion+","+cancion.Localizacion;
+            datos[0] = cancion.Titulo + "," + cancion.Artista + "," + cancion.Genero + "," + cancion.Duracion + "," + cancion.Localizacion;
             return datos;
         }
 
@@ -61,13 +73,13 @@ namespace Lab1
             else
             {
                 IEnumerable<Cancion> listaOrdenada = listaCanciones.OrderBy(Cancion => Cancion.Titulo);
-                listaCanciones = listaOrdenada.ToList<Cancion>(); 
+                listaCanciones = listaOrdenada.ToList<Cancion>();
             }
         }
 
         public static Cancion buscarUrlCancion(String criterioDeBusqueda)
         {
-            String[] datos = File.ReadAllLines(nombrePorDefectoArchivo);
+            String[] datos = File.ReadAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo);
             for (int i = 0; i < datos.Length; i++)
             {
                 String[] words = datos[i].Split(',');
@@ -81,9 +93,9 @@ namespace Lab1
 
         public static void AgregarCancion(Cancion cancion)
         {
-            if (!File.Exists(nombrePorDefectoArchivo))
+            if (!File.Exists(nombrePorDefectoRuta + nombrePorDefectoArchivo))
             {
-                File.WriteAllLines(nombrePorDefectoArchivo, agregarCanciones(cancion));
+                File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, agregarCanciones(cancion));
             }
             else
             {
@@ -100,14 +112,14 @@ namespace Lab1
                         nuevosDatos[i] = datosDeVuelta[i];
                     }
                 }
-                File.WriteAllLines(nombrePorDefectoArchivo, nuevosDatos);
+                File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, nuevosDatos);
             }
         }
-        
+
         public static bool PlaylistExiste()
         {
-            return File.Exists(nombrePorDefectoArchivo);
+            return File.Exists(nombrePorDefectoRuta + nombrePorDefectoArchivo);
         }
-        
+
     }
 }

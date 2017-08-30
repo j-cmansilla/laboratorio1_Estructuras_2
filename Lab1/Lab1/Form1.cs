@@ -16,9 +16,9 @@ namespace Lab1
         private const string nombrePorDefectoArchivo = "usuarios.csv";
         public login()
         {
-            ControlUsuarios.initialize();
-            ControlUsuarios.FillUsers(nombrePorDefectoRuta+nombrePorDefectoArchivo);
             InitializeComponent();
+            ControlUsuarios.initialize();
+            ControlUsuarios.FillUsers(nombrePorDefectoRuta + nombrePorDefectoArchivo);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace Lab1
             }
             else
             {
-                if (ControlUsuarios.ReconocerUsuario(txtUsuario.Text,txtPass.Text))
+                if (ControlUsuarios.ReconocerUsuario(txtUsuario.Text, txtPass.Text))
                 {
                     Usuario usuarioLogueado = ControlUsuarios.RetornarUsuarioLogueado(txtUsuario.Text);
                     refreshData();

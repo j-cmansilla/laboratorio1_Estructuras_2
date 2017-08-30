@@ -17,7 +17,8 @@ namespace Lab1
             }
             else
             {
-                File.Create(FilePath);
+                string[] nuevo = new string[1];
+                File.WriteAllLines(FilePath, nuevo);
                 return File.ReadAllLines(FilePath);
             }
         }

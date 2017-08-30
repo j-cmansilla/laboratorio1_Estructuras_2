@@ -10,13 +10,13 @@ namespace Lab1
     public class ControlCanciones
     {
         public static List<Cancion> listaCanciones;
-        
+
         private const string nombrePorDefectoRuta = @"C:/uTunes/Canciones/";
         private const string nombrePorDefectoArchivo = "canciones.csv";
         public static bool DictionaryIsLoaded = false;
         public static void initialize()
         {
-            if (!Directory.Exists(nombrePorDefectoRuta + nombrePorDefectoArchivo))
+            if (!Directory.Exists(nombrePorDefectoRuta))
             {
                 Directory.CreateDirectory(nombrePorDefectoRuta);
             }
@@ -31,7 +31,7 @@ namespace Lab1
                 String[] words = datos[i].Split(',');
                 if (criterioDeBusqueda == words[0])
                 {
-                    listaDeCanciones.Add(words[0]+","+words[1]+","+words[2]+","+words[3]+","+words[4]);
+                    listaDeCanciones.Add(words[0] + "," + words[1] + "," + words[2] + "," + words[3] + "," + words[4]);
                 }
             }
             return listaDeCanciones;
@@ -45,7 +45,7 @@ namespace Lab1
                 String[] words = datos[i].Split(',');
                 if (criterioDeBusqueda == words[0])
                 {
-                    return new Cancion(words[0],words[1],words[2],words[3],words[4]);
+                    return new Cancion(words[0], words[1], words[2], words[3], words[4]);
                 }
             }
             return new Cancion();
@@ -59,13 +59,14 @@ namespace Lab1
         }
         public static void AgregarCancion(Cancion cancion)
         {
-            if (!File.Exists(nombrePorDefectoArchivo))
+            if (!File.Exists(nombrePorDefectoRuta + nombrePorDefectoArchivo))
             {
-                File.WriteAllLines(nombrePorDefectoArchivo, agregarCanciones(cancion));
+                initialize();
+                File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, agregarCanciones(cancion));
             }
             else
             {
-                String[] datosDeVuelta = File.ReadAllLines(nombrePorDefectoArchivo);
+                String[] datosDeVuelta = File.ReadAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo);
                 String[] nuevosDatos = new String[datosDeVuelta.Length + 1];
                 for (int i = 0; i < nuevosDatos.Length; i++)
                 {
@@ -78,25 +79,36 @@ namespace Lab1
                         nuevosDatos[i] = datosDeVuelta[i];
                     }
                 }
-                File.WriteAllLines(nombrePorDefectoArchivo, nuevosDatos);
+                File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, nuevosDatos);
             }
         }
 
         public static void FillSongs(string FilePath)
         {
-            string[] Lines = ControlDeArchivos.OpenFile(FilePath);
-            listaCanciones = new List<Cancion>();
-            foreach (string Line in Lines)
+            if (!File.Exists(nombrePorDefectoRuta + nombrePorDefectoArchivo))
             {
-                string[] SeparatedValues = Line.Split(',');
-                listaCanciones.Add(new Cancion(SeparatedValues[0],SeparatedValues[1],SeparatedValues[2],SeparatedValues[3],SeparatedValues[4]));
+                initialize();
+                string[] canciones = new string[1];
+                File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, canciones);
             }
-            if (!Directory.Exists(nombrePorDefectoRuta))
+            else
             {
-                Directory.CreateDirectory(nombrePorDefectoRuta);
+                string[] Lines = ControlDeArchivos.OpenFile(FilePath);
+                listaCanciones = new List<Cancion>();
+                foreach (string Line in Lines)
+                {
+                    if (Line != "")
+                    {
+                        string[] SeparatedValues = Line.Split(',');
+                        listaCanciones.Add(new Cancion(SeparatedValues[0], SeparatedValues[1], SeparatedValues[2], SeparatedValues[3], SeparatedValues[4]));
+                    }
+                }
+                if (!Directory.Exists(nombrePorDefectoRuta))
+                {
+                    Directory.CreateDirectory(nombrePorDefectoRuta);
+                }
+                File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, Lines);
             }
-            File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, Lines);
-
             //DictionaryIsLoaded = true;
         }
 

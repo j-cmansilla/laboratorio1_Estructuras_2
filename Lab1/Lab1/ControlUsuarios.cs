@@ -14,7 +14,7 @@ namespace Lab1
         public static bool DictionaryIsLoaded = false;
         public static void initialize()
         {
-            if (!Directory.Exists(nombrePorDefectoRuta+nombrePorDefectoArchivo))
+            if (!Directory.Exists(nombrePorDefectoRuta + nombrePorDefectoArchivo))
             {
                 Directory.CreateDirectory(nombrePorDefectoRuta);
             }
@@ -35,7 +35,7 @@ namespace Lab1
         public static String[] agregarUsuarios(Usuario usuario)
         {
             String[] datos = new String[1];
-            datos[0] = usuario.NombreUsuario+","+usuario.Contrasenia+","+usuario.ID+","+usuario.Nombre;
+            datos[0] = usuario.NombreUsuario + "," + usuario.Contrasenia + "," + usuario.ID + "," + usuario.Nombre;
             return datos;
         }
         public static void RegistrarUsuario(Usuario usuario)
@@ -63,7 +63,7 @@ namespace Lab1
                 File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, nuevosDatos);
             }
         }
-        
+
         public static String[] listaUsuarios;
 
         public static Usuario RetornarUsuarioLogueado(string nombreUsuario)
@@ -73,7 +73,7 @@ namespace Lab1
                 string[] datos = listaUsuarios[i].Split(',');
                 if (datos[0] == nombreUsuario)
                 {
-                    return new Usuario(datos[3],new Guid(datos[2]),datos[1], datos[0]);
+                    return new Usuario(datos[3], new Guid(datos[2]), datos[1], datos[0]);
                 }
             }
             return new Usuario("", Guid.NewGuid(), "", "");
@@ -81,17 +81,17 @@ namespace Lab1
 
         public static bool ReconocerUsuario(string nombreUsuario, string pass)
         {
-                for (int i = 0; i < Users.Count; i++)
+            for (int i = 0; i < Users.Count; i++)
+            {
+                if (Users.ElementAt(i).Value.Equals(pass) && Users.ElementAt(i).Key.Equals(nombreUsuario))
                 {
-                    if (Users.ElementAt(i).Value.Equals(pass) && Users.ElementAt(i).Key.Equals(nombreUsuario))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+            }
             return false;
         }
 
-        public static Dictionary<string,string> Users = new Dictionary<string, string>();
+        public static Dictionary<string, string> Users = new Dictionary<string, string>();
 
         public static void FillUsers(string FilePath)
         {
@@ -101,9 +101,16 @@ namespace Lab1
             foreach (string Line in Lines)
             {
                 string[] SeparatedValues = Line.Split(',');
-                string Key = SeparatedValues[0];
-                string Value = SeparatedValues[1];
-                Users.Add(Key, Value);
+                if (SeparatedValues.Length == 1)
+                {
+
+                }
+                else
+                {
+                    string Key = SeparatedValues[0];
+                    string Value = SeparatedValues[1];
+                    Users.Add(Key, Value);
+                }
             }
             if (!Directory.Exists(nombrePorDefectoRuta))
             {
@@ -115,3 +122,4 @@ namespace Lab1
         }
     }
 }
+
