@@ -9,109 +9,91 @@ namespace Lab1
 {
     class ControlPlayList
     {
-        private const string nombrePorDefectoRuta = @"C:/uTunes/PlayList/";
         private const string nombrePorDefectoArchivo = "playlist.csv";
         public static bool DictionaryIsLoaded = false;
-        public static void initialize()
-        {
-            if (!Directory.Exists(nombrePorDefectoRuta + nombrePorDefectoArchivo))
-            {
-                Directory.CreateDirectory(nombrePorDefectoRuta);
-            }
-            else
-            {
-                Users.Add("admin", "admin");
-                List<string> Lines = new List<string>();
-                if (!Directory.Exists(nombrePorDefectoRuta))
-                {
-                    Directory.CreateDirectory(nombrePorDefectoRuta);
-                }
-                File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, Lines.ToArray());
-                FillUsers(nombrePorDefectoRuta + nombrePorDefectoArchivo);
-            }
+       
+        public static List<Cancion> listaCanciones = new List<Cancion>();
 
+        public static void FillSongs(string FilePath)
+        {
+            string[] Lines = ControlDeArchivos.OpenFile(FilePath);
+            listaCanciones = new List<Cancion>();
+            foreach (string Line in Lines)
+            {
+                string[] SeparatedValues = Line.Split(',');
+                listaCanciones.Add(new Cancion(SeparatedValues[0], SeparatedValues[1], SeparatedValues[2], SeparatedValues[3], SeparatedValues[4])); 
+            }
+            if (!Directory.Exists(nombrePorDefectoArchivo))
+            {
+                //Directory.CreateDirectory(nombrePorDefectoArchivo);
+            }
+            File.WriteAllLines(nombrePorDefectoArchivo, Lines);
         }
 
-        public static String[] agregarUsuarios(Usuario usuario)
+        public static String[] agregarCanciones(Cancion cancion)
         {
             String[] datos = new String[1];
-            datos[0] = usuario.NombreUsuario + "," + usuario.Contrasenia + "," + usuario.ID + "," + usuario.Nombre;
+            datos[0] = cancion.Titulo + "," + cancion.Artista + "," + cancion.Genero + "," + cancion.Duracion+","+cancion.Localizacion;
             return datos;
         }
-        public static void RegistrarUsuario(Usuario usuario)
+
+        public static void OrdenarListaPorDuracion(string forma)
         {
-            if (!File.Exists(nombrePorDefectoRuta + nombrePorDefectoArchivo))
+            if (forma == "des")
             {
-                initialize();
-                File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, agregarUsuarios(usuario));
+                IEnumerable<Cancion> listaOrdenada = listaCanciones.OrderByDescending(Cancion => Cancion.Duracion);
+                listaCanciones = listaOrdenada.ToList<Cancion>();
             }
             else
             {
-                String[] datosDeVuelta = File.ReadAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo);
+                IEnumerable<Cancion> listaOrdenada = listaCanciones.OrderBy(Cancion => Cancion.Duracion);
+                listaCanciones = listaOrdenada.ToList<Cancion>();
+            }
+        }
+
+        public static void OrdenarListaPorTitulo(string forma)
+        {
+            if (forma == "des")
+            {
+                IEnumerable<Cancion> listaOrdenada = listaCanciones.OrderByDescending(Cancion => Cancion.Titulo);
+                listaCanciones = listaOrdenada.ToList<Cancion>();
+            }
+            else
+            {
+                IEnumerable<Cancion> listaOrdenada = listaCanciones.OrderBy(Cancion => Cancion.Titulo);
+                listaCanciones = listaOrdenada.ToList<Cancion>(); 
+            }
+        }
+
+        public static void AgregarCancion(Cancion cancion)
+        {
+            if (!File.Exists(nombrePorDefectoArchivo))
+            {
+                File.WriteAllLines(nombrePorDefectoArchivo, agregarCanciones(cancion));
+            }
+            else
+            {
+                String[] datosDeVuelta = File.ReadAllLines(nombrePorDefectoArchivo);
                 String[] nuevosDatos = new String[datosDeVuelta.Length + 1];
                 for (int i = 0; i < nuevosDatos.Length; i++)
                 {
                     if (i == datosDeVuelta.Length)
                     {
-                        nuevosDatos[i] = agregarUsuarios(usuario)[0];
+                        nuevosDatos[i] = agregarCanciones(cancion)[0];
                     }
                     else
                     {
                         nuevosDatos[i] = datosDeVuelta[i];
                     }
                 }
-                File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, nuevosDatos);
+                File.WriteAllLines(nombrePorDefectoArchivo, nuevosDatos);
             }
         }
-
-        public static String[] listaUsuarios;
-
-        public static Usuario RetornarUsuarioLogueado(string nombreUsuario)
+        
+        public static bool PlaylistExiste()
         {
-            for (int i = 0; i < listaUsuarios.Length; i++)
-            {
-                string[] datos = listaUsuarios[i].Split(',');
-                if (datos[0] == nombreUsuario)
-                {
-                    return new Usuario(datos[3], new Guid(datos[2]), datos[1], datos[0]);
-                }
-            }
-            return new Usuario("", Guid.NewGuid(), "", "");
+            return File.Exists(nombrePorDefectoArchivo);
         }
-
-        public static bool ReconocerUsuario(string nombreUsuario, string pass)
-        {
-            for (int i = 0; i < Users.Count; i++)
-            {
-                if (Users.ElementAt(i).Value.Equals(pass) && Users.ElementAt(i).Key.Equals(nombreUsuario))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public static Dictionary<string, string> Users = new Dictionary<string, string>();
-
-        public static void FillUsers(string FilePath)
-        {
-            Users = new Dictionary<string, string>();
-            string[] Lines = ControlDeArchivos.OpenFile(FilePath);
-            listaUsuarios = Lines;
-            foreach (string Line in Lines)
-            {
-                string[] SeparatedValues = Line.Split(',');
-                string Key = SeparatedValues[0];
-                string Value = SeparatedValues[1];
-                Users.Add(Key, Value);
-            }
-            if (!Directory.Exists(nombrePorDefectoRuta))
-            {
-                Directory.CreateDirectory(nombrePorDefectoRuta);
-            }
-            File.WriteAllLines(nombrePorDefectoRuta + nombrePorDefectoArchivo, Lines);
-
-            DictionaryIsLoaded = true;
-        }
+        
     }
 }

@@ -54,9 +54,10 @@
             // 
             // txtNombre
             // 
+            this.txtNombre.Font = new System.Drawing.Font("Eras Medium ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(12, 174);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(320, 20);
+            this.txtNombre.Size = new System.Drawing.Size(320, 26);
             this.txtNombre.TabIndex = 10;
             // 
             // label2
@@ -98,9 +99,10 @@
             // 
             // txtNombreUsuario
             // 
+            this.txtNombreUsuario.Font = new System.Drawing.Font("Eras Medium ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreUsuario.Location = new System.Drawing.Point(12, 231);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
-            this.txtNombreUsuario.Size = new System.Drawing.Size(320, 20);
+            this.txtNombreUsuario.Size = new System.Drawing.Size(320, 26);
             this.txtNombreUsuario.TabIndex = 12;
             // 
             // label3
@@ -117,18 +119,20 @@
             // 
             // txtContra
             // 
+            this.txtContra.Font = new System.Drawing.Font("Eras Medium ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContra.Location = new System.Drawing.Point(12, 290);
             this.txtContra.Name = "txtContra";
             this.txtContra.PasswordChar = '•';
-            this.txtContra.Size = new System.Drawing.Size(320, 20);
+            this.txtContra.Size = new System.Drawing.Size(320, 26);
             this.txtContra.TabIndex = 14;
             // 
             // txtContraNueva
             // 
+            this.txtContraNueva.Font = new System.Drawing.Font("Eras Medium ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContraNueva.Location = new System.Drawing.Point(12, 348);
             this.txtContraNueva.Name = "txtContraNueva";
             this.txtContraNueva.PasswordChar = '•';
-            this.txtContraNueva.Size = new System.Drawing.Size(320, 20);
+            this.txtContraNueva.Size = new System.Drawing.Size(320, 26);
             this.txtContraNueva.TabIndex = 16;
             // 
             // label5

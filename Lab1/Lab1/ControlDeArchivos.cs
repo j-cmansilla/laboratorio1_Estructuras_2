@@ -11,7 +11,15 @@ namespace Lab1
     {
         public static string[] OpenFile(string FilePath)
         {
-            return File.ReadAllLines(FilePath);
+            if (File.Exists(FilePath))
+            {
+                return File.ReadAllLines(FilePath);
+            }
+            else
+            {
+                File.Create(FilePath);
+                return File.ReadAllLines(FilePath);
+            }
         }
     }
 }

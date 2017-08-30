@@ -3,21 +3,22 @@
     public class Cancion
     {
         public string Titulo { get; set; }
-        public Artista Artista { get; set; }
+        public string Artista { get; set; }
         public string Genero { get; set; }
         public string Duracion { get; set; }
-
+        public string Localizacion {get;set;}
         public Cancion()
         {
 
         }
-
-        public Cancion(string nombre, Artista artista, string genero, string duracion)
+        
+        public Cancion(string titulo, string artista, string genero, string duracion, string localizacion)
         {
-            this.Titulo = nombre;
-            this.Artista = artista;
-            this.Genero = genero;
-            this.Duracion = duracion;
+            Titulo = titulo;
+            Artista = artista;
+            Genero = genero;
+            Duracion = duracion;
+            Localizacion = localizacion;
         }
     }
 }
